@@ -42,4 +42,10 @@ class VendingMachineTest {
         Assert.assertEquals("$0.10", machine.getDisplay())
     }
 
+    @Test
+    fun acceptQuarter(){
+        machine.insertCoin(Coin.QUARTER)
+        Assert.assertEquals("$0.25", machine.getDisplay())
+    }
+
 }
