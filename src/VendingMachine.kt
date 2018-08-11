@@ -2,8 +2,8 @@ class VendingMachine {
     private val coins = mutableMapOf<Coin, Int>()
     val coinsReturn = mutableMapOf<Coin, Int>()
     var dispensedProduct: Product? = null
-    var showThankYou = false
-    var expensiveProduct: Product? = null
+    private var showThankYou = false
+    private var expensiveProduct: Product? = null
 
     fun insertCoin(coin: Coin) {
         if (coin == Coin.PENNY) {
