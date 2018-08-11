@@ -39,6 +39,12 @@ class VendingMachine {
         }
     }
 
+    fun returnCoins() {
+        coins.entries.forEach {
+            coinsReturn[it.key] = it.value
+        }
+    }
+
     private fun calculateAmount(): Int {
         var amount = 0
         coins.forEach {
