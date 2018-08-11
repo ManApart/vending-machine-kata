@@ -1,8 +1,13 @@
 class VendingMachine {
     private val coins = mutableMapOf<Coin, Int>()
+    val coinsReturn = mutableMapOf<Coin, Int>()
 
     fun insertCoin(coin: Coin) {
-        coins[coin] = (coins[coin] ?: 0) + 1
+        if (coin == Coin.PENNY) {
+            coinsReturn[coin] = (coinsReturn[coin] ?: 0) + 1
+        } else {
+            coins[coin] = (coins[coin] ?: 0) + 1
+        }
     }
 
     fun getDisplay(): String {
