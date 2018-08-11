@@ -1,6 +1,7 @@
 class VendingMachine {
     private val coins = mutableMapOf<Coin, Int>()
     val coinsReturn = mutableMapOf<Coin, Int>()
+    var dispensedProduct: Product? = null
 
     fun insertCoin(coin: Coin) {
         if (coin == Coin.PENNY) {
@@ -16,6 +17,10 @@ class VendingMachine {
         } else {
             formatAmount(calculateAmount())
         }
+    }
+
+    fun selectProduct(product: Product) {
+        dispensedProduct = product
     }
 
     private fun calculateAmount(): Int {
