@@ -21,4 +21,11 @@ class VendingMachineTest {
         Assert.assertEquals("$0.05", machine.getDisplay())
     }
 
+    @Test
+    fun accept2Nickels(){
+        machine.insertCoin(Coin.NICKEL)
+        machine.insertCoin(Coin.NICKEL)
+        Assert.assertEquals("$0.10", machine.getDisplay())
+    }
+
 }
