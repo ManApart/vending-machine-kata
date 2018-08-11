@@ -1,5 +1,5 @@
 class VendingMachine {
-    var coins = mutableMapOf<Coin, Int>()
+    private val coins = mutableMapOf<Coin, Int>()
 
     fun insertCoin(coin: Coin) {
         coins[coin] = (coins[coin] ?: 0) + 1
