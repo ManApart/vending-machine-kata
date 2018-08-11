@@ -1,4 +1,5 @@
 enum class Product(val price: Int) {
-    COLA(100),
-    CHIPS(50);
+    CANDY(65),
+    CHIPS(50),
+    COLA(100);
 }
