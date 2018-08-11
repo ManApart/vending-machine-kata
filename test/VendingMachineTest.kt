@@ -28,4 +28,12 @@ class VendingMachineTest {
         Assert.assertEquals("$0.10", machine.getDisplay())
     }
 
+    @Test
+    fun accept22Nickels(){
+        for (i in 0 until 22){
+            machine.insertCoin(Coin.NICKEL)
+        }
+        Assert.assertEquals("$1.10", machine.getDisplay())
+    }
+
 }

@@ -22,10 +22,14 @@ class VendingMachine {
     }
 
     private fun formatAmount(amount: Int): String {
-        return if (amount < 10) {
-            "$0.0$amount"
-        } else {
-            "$0.$amount"
+        return when {
+            amount < 10 -> "$0.0$amount"
+            amount < 100 -> "$0.$amount"
+            else -> {
+                val cents = amount % 100
+                val dollars = amount / 100
+                "$$dollars.$cents"
+            }
         }
     }
 }
