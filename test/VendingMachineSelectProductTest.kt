@@ -34,8 +34,6 @@ class VendingMachineSelectProductTest {
     fun purchaseChips() {
         machine.insertCoin(Coin.QUARTER)
         machine.insertCoin(Coin.QUARTER)
-        machine.insertCoin(Coin.DIME)
-        machine.insertCoin(Coin.NICKEL)
 
         machine.selectProduct(Product.CHIPS)
 
