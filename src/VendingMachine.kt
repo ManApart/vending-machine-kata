@@ -3,6 +3,7 @@ class VendingMachine {
     val coinsReturn = mutableMapOf<Coin, Int>()
     var dispensedProduct: Product? = null
     var showThankYou = false
+    var expensiveProduct: Product? = null
 
     fun insertCoin(coin: Coin) {
         if (coin == Coin.PENNY) {
@@ -19,6 +20,10 @@ class VendingMachine {
                 coins.clear()
                 "THANK YOU"
             }
+            expensiveProduct != null -> {
+                val amount = formatAmount(expensiveProduct!!.price)
+                "PRICE $amount"
+            }
             coins.isEmpty() -> "INSERT COIN"
             else -> formatAmount(calculateAmount())
         }
@@ -28,6 +33,8 @@ class VendingMachine {
         if (calculateAmount() >= product.price){
             dispensedProduct = product
             showThankYou = true
+        } else {
+            expensiveProduct = product
         }
     }
 
@@ -46,8 +53,9 @@ class VendingMachine {
             amount < 100 -> "$0.$amount"
             else -> {
                 val cents = amount % 100
+                val centString = if (cents < 10) "0$cents" else "$cents"
                 val dollars = amount / 100
-                "$$dollars.$cents"
+                "$$dollars.$centString"
             }
         }
     }

@@ -26,7 +26,7 @@ class VendingMachineSelectProductTest {
     fun colaRequires100Cents() {
         machine.selectProduct(Product.COLA)
         Assert.assertEquals(null, machine.dispensedProduct)
-
+        Assert.assertEquals("PRICE $1.00", machine.getDisplay())
     }
 
 
