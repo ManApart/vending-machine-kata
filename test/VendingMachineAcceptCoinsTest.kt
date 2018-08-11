@@ -2,7 +2,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class VendingMachineTest {
+class VendingMachineAcceptCoinsTest {
     var machine = VendingMachine()
 
     @Before
