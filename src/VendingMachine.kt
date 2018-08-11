@@ -25,8 +25,10 @@ class VendingMachine {
     }
 
     fun selectProduct(product: Product) {
-        dispensedProduct = product
-        showThankYou = true
+        if (calculateAmount() >= product.price){
+            dispensedProduct = product
+            showThankYou = true
+        }
     }
 
     private fun calculateAmount(): Int {
