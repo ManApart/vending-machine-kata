@@ -36,4 +36,10 @@ class VendingMachineTest {
         Assert.assertEquals("$1.10", machine.getDisplay())
     }
 
+    @Test
+    fun acceptDime(){
+        machine.insertCoin(Coin.DIME)
+        Assert.assertEquals("$0.10", machine.getDisplay())
+    }
+
 }

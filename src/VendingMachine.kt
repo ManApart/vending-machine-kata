@@ -16,7 +16,8 @@ class VendingMachine {
     private fun calculateAmount(): Int {
         var amount = 0
         coins.forEach {
-            amount += it.value * 5
+            val worth = CoinValue.getValue(it.key).value
+            amount += it.value * worth
         }
         return amount
     }
