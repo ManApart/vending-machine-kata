@@ -22,6 +22,7 @@ class VendingMachine {
             }
             expensiveProduct != null -> {
                 val amount = formatAmount(expensiveProduct!!.price)
+                expensiveProduct = null
                 "PRICE $amount"
             }
             coins.isEmpty() -> "INSERT COIN"

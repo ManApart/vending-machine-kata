@@ -23,10 +23,11 @@ class VendingMachineSelectProductTest {
     }
 
     @Test
-    fun colaRequires100Cents() {
+    fun colaRequires100CentsAndHasNone() {
         machine.selectProduct(Product.COLA)
         Assert.assertEquals(null, machine.dispensedProduct)
         Assert.assertEquals("PRICE $1.00", machine.getDisplay())
+        Assert.assertEquals("INSERT COIN", machine.getDisplay())
     }
 
 
