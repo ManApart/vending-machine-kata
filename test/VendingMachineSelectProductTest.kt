@@ -30,5 +30,18 @@ class VendingMachineSelectProductTest {
         Assert.assertEquals("INSERT COIN", machine.getDisplay())
     }
 
+    @Test
+    fun purchaseChips() {
+        machine.insertCoin(Coin.QUARTER)
+        machine.insertCoin(Coin.QUARTER)
+        machine.insertCoin(Coin.DIME)
+        machine.insertCoin(Coin.NICKEL)
+
+        machine.selectProduct(Product.CHIPS)
+
+        Assert.assertEquals(Product.CHIPS, machine.dispensedProduct)
+        Assert.assertEquals("THANK YOU", machine.getDisplay())
+    }
+
 
 }
