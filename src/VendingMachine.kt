@@ -43,6 +43,7 @@ class VendingMachine {
         coins.entries.forEach {
             coinsReturn[it.key] = it.value
         }
+        coins.clear()
     }
 
     private fun calculateAmount(): Int {

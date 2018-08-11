@@ -22,7 +22,7 @@ class VendingMachineReturnCoinsTest {
         Assert.assertEquals(2, machine.coinsReturn[Coin.QUARTER])
         Assert.assertEquals(1, machine.coinsReturn[Coin.DIME])
         Assert.assertEquals(1, machine.coinsReturn[Coin.NICKEL])
-
+        Assert.assertEquals("INSERT COIN", machine.getDisplay())
     }
 
 
