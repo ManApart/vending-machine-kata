@@ -19,6 +19,7 @@ class VendingMachineSelectProductTest {
 
         Assert.assertEquals(Product.COLA, machine.dispensedProduct)
         Assert.assertEquals("THANK YOU", machine.getDisplay())
+        Assert.assertEquals("INSERT COIN", machine.getDisplay())
     }
 
 

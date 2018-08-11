@@ -14,7 +14,11 @@ class VendingMachine {
 
     fun getDisplay(): String {
         return when {
-            showThankYou -> "THANK YOU"
+            showThankYou -> {
+                showThankYou = false
+                coins.clear()
+                "THANK YOU"
+            }
             coins.isEmpty() -> "INSERT COIN"
             else -> formatAmount(calculateAmount())
         }
