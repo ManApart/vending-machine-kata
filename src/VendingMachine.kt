@@ -1,11 +1,9 @@
 class VendingMachine {
-
-
     private val productStock = mutableMapOf(Pair(Product.COLA, 2), Pair(Product.CHIPS, 2), Pair(Product.CANDY, 2))
     private val coins = mutableMapOf<Coin, Int>()
     val coinsReturn = mutableMapOf<Coin, Int>()
     var dispensedProduct: Product? = null
-    private var vendingState = VendingState.VENDING
+    var vendingState = VendingState.VENDING
     private var expensiveProduct: Product? = null
     private val changeMaker = ChangeMaker()
 
@@ -22,6 +20,9 @@ class VendingMachine {
             VendingState.SOLD_OUT ->{
                 vendingState = VendingState.VENDING
                 "SOLD OUT"
+            }
+            VendingState.EXACT_CHANGE_ONLY ->{
+                "EXACT CHANGE ONLY"
             }
             VendingState.PURCHASE_COMPLETE ->{
                 vendingState = VendingState.VENDING
