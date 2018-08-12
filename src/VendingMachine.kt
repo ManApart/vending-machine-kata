@@ -1,8 +1,12 @@
 class VendingMachine {
+
+
+    private val productStock = mutableMapOf(Pair(Product.COLA, 2), Pair(Product.CHIPS, 2), Pair(Product.CANDY, 2))
     private val coins = mutableMapOf<Coin, Int>()
     val coinsReturn = mutableMapOf<Coin, Int>()
     var dispensedProduct: Product? = null
     private var showThankYou = false
+    private var showSoldOut = false
     private var expensiveProduct: Product? = null
     private val changeMaker = ChangeMaker()
 
@@ -16,6 +20,9 @@ class VendingMachine {
 
     fun getDisplay(): String {
         return when {
+            showSoldOut -> {
+                "SOLD OUT"
+            }
             showThankYou -> {
                 showThankYou = false
                 "THANK YOU"
@@ -31,13 +38,19 @@ class VendingMachine {
     }
 
     fun selectProduct(product: Product) {
-        if (calculateAmount() >= product.price){
-            dispensedProduct = product
-            showThankYou = true
-            makeChange(product)
-            coins.clear()
+        val stockCount = productStock[product] ?: 0
+        if (stockCount > 0) {
+            if (calculateAmount() >= product.price) {
+                dispensedProduct = product
+                showThankYou = true
+                makeChange(product)
+                coins.clear()
+                productStock[product] = (productStock[product] ?: 0) -1
+            } else {
+                expensiveProduct = product
+            }
         } else {
-            expensiveProduct = product
+            showSoldOut = true
         }
     }
 
