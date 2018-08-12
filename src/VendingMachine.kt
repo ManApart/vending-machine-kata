@@ -5,8 +5,7 @@ class VendingMachine {
     private val coins = mutableMapOf<Coin, Int>()
     val coinsReturn = mutableMapOf<Coin, Int>()
     var dispensedProduct: Product? = null
-    private var showThankYou = false
-    private var showSoldOut = false
+    private var vendingState = VendingState.VENDING
     private var expensiveProduct: Product? = null
     private val changeMaker = ChangeMaker()
 
@@ -19,21 +18,28 @@ class VendingMachine {
     }
 
     fun getDisplay(): String {
-        return when {
-            showSoldOut -> {
+        return when(vendingState) {
+            VendingState.SOLD_OUT ->{
+                vendingState = VendingState.VENDING
                 "SOLD OUT"
             }
-            showThankYou -> {
-                showThankYou = false
+            VendingState.PURCHASE_COMPLETE ->{
+                vendingState = VendingState.VENDING
                 "THANK YOU"
             }
-            expensiveProduct != null -> {
+            VendingState.NOT_ENOUGH_MONEY ->{
                 val amount = formatAmount(expensiveProduct!!.price)
                 expensiveProduct = null
+                vendingState = VendingState.VENDING
                 "PRICE $amount"
             }
-            coins.isEmpty() -> "INSERT COIN"
-            else -> formatAmount(calculateAmount())
+            else -> {
+                if (coins.isEmpty()) {
+                    "INSERT COIN"
+                } else {
+                    formatAmount(calculateAmount())
+                }
+            }
         }
     }
 
@@ -42,15 +48,16 @@ class VendingMachine {
         if (stockCount > 0) {
             if (calculateAmount() >= product.price) {
                 dispensedProduct = product
-                showThankYou = true
                 makeChange(product)
                 coins.clear()
                 productStock[product] = (productStock[product] ?: 0) -1
+                vendingState = VendingState.PURCHASE_COMPLETE
             } else {
                 expensiveProduct = product
+                vendingState = VendingState.NOT_ENOUGH_MONEY
             }
         } else {
-            showSoldOut = true
+            vendingState = VendingState.SOLD_OUT
         }
     }
 

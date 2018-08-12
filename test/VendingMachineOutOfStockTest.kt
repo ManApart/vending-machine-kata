@@ -24,6 +24,7 @@ class VendingMachineOutOfStockTest {
         purchaseCola()
         Assert.assertNull(machine.dispensedProduct)
         Assert.assertEquals("SOLD OUT", machine.getDisplay())
+        Assert.assertEquals("$1.00", machine.getDisplay())
     }
 
     private fun purchaseCola() {
