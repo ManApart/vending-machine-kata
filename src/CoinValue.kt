@@ -1,4 +1,5 @@
 enum class CoinValue(val coin: Coin, val value: Int) {
+    PENNY(Coin.PENNY, 1),
     NICKEL(Coin.NICKEL, 5),
     DIME(Coin.DIME, 10),
     QUARTER(Coin.QUARTER, 25);

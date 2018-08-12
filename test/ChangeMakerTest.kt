@@ -16,4 +16,10 @@ class ChangeMakerTest {
         Assert.assertEquals(CoinValue.QUARTER, coin)
     }
 
+    @Test
+    fun findLargestCoinPenny() {
+        val coin = changeMaker.findLargestCoin(4)
+        Assert.assertEquals(CoinValue.PENNY, coin)
+    }
+
 }
