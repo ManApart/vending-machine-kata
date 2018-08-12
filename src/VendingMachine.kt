@@ -4,6 +4,7 @@ class VendingMachine {
     var dispensedProduct: Product? = null
     private var showThankYou = false
     private var expensiveProduct: Product? = null
+    private val changeMaker = ChangeMaker()
 
     fun insertCoin(coin: Coin) {
         if (coin == Coin.PENNY) {
@@ -34,8 +35,16 @@ class VendingMachine {
         if (calculateAmount() >= product.price){
             dispensedProduct = product
             showThankYou = true
+            makeChange(product)
         } else {
             expensiveProduct = product
+        }
+    }
+
+    private fun makeChange(product: Product) {
+        val change = changeMaker.makeChange(calculateAmount() - product.price)
+        change.entries.forEach {
+            coinsReturn[it.key] = (coinsReturn[it.key] ?: 0) + it.value
         }
     }
 
