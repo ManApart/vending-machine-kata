@@ -22,4 +22,12 @@ class ChangeMakerTest {
         Assert.assertEquals(CoinValue.PENNY, coin)
     }
 
+    @Test
+    fun getChangeFor50() {
+        val change = changeMaker.makeChange(50)
+
+        Assert.assertEquals(1, change.entries.size)
+        Assert.assertEquals(2, change[Coin.QUARTER])
+    }
+
 }
