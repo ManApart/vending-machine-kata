@@ -18,7 +18,6 @@ class VendingMachine {
         return when {
             showThankYou -> {
                 showThankYou = false
-                coins.clear()
                 "THANK YOU"
             }
             expensiveProduct != null -> {
@@ -36,6 +35,7 @@ class VendingMachine {
             dispensedProduct = product
             showThankYou = true
             makeChange(product)
+            coins.clear()
         } else {
             expensiveProduct = product
         }
